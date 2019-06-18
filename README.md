@@ -37,10 +37,11 @@ string(STRIP "${SDL2_LIBRARIES}" SDL2_LIBRARIES)
 On Linux
 --------
 
-* `sudo apt-get install sdl2-dev`
-* `sudo apt-get install glew-dev`
+Along with cmake, you'll want SDL2 and GLEW via something like:
+* `sudo apt-get install libsdl2-dev`
+* `sudo apt-get install libglew-dev`
 
-Something like:
+Then build via something like:
 ```
 mkdir build
 cd build
