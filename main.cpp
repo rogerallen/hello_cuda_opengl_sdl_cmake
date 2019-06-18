@@ -3,14 +3,14 @@
 #include <SDL.h> 
 #include <iostream>
 
-int Initialize();
-int Update();
-int Cleanup();
+int initialize();
+int update();
+int cleanup();
 
 SDL_Window    *m_window;
 SDL_GLContext  m_context;
 
-int Initialize()
+int initialize()
 {
     // Initialize SDL Video
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -20,7 +20,7 @@ int Initialize()
 
     // Create main window
     m_window = SDL_CreateWindow(
-        "SDL App",
+        "Hello CUDA OpenGL SDL2!",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         640, 480,
@@ -64,7 +64,7 @@ int Initialize()
     return 0;
 }
 
-int Update()
+int update()
 {
     glClearColor(1.0f, 0.5f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -73,7 +73,7 @@ int Update()
     return 0;
 }
 
-int Cleanup()
+int cleanup()
 {
     SDL_GL_DeleteContext(m_context);
     SDL_DestroyWindow(m_window);
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     hello(); // hello from CUDA
 
     std::cout << "Initializing SDL & OpenGL" << std::endl;
-    if (Initialize()) {
+    if (initialize()) {
         return 1;
     }
 
@@ -109,10 +109,10 @@ int main(int argc, char *argv[])
             }
         }
 
-        Update();
+        update();
     }
 
     std::cout << "Exiting..." << std::endl;
-    Cleanup();
+    cleanup();
     return 0;
 }
