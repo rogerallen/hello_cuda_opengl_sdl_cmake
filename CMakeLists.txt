@@ -29,10 +29,8 @@ endif()
 # Windows prereq: get dev libraries from https://www.libsdl.org/download-2.0.php
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
-if(NOT WIN32)
-    # workaround for CMP0004 issue with the SDL2 libraries on Linux
-    string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
-endif()
+# workaround for CMP0004 issue with the SDL2 libraries on Linux
+string(STRIP "${SDL2_LIBRARIES}" SDL2_LIBRARIES)
 target_link_libraries(hello ${SDL2_LIBRARIES})
 
 # OpenGL
@@ -48,8 +46,8 @@ endif()
 
 # GL Extension Wrangler (GLEW) get dev libraries from http://glew.sourceforge.net/
 find_package(GLEW REQUIRED)
-target_link_libraries(hello ${GLEW_LIBRARIES})
-target_include_directories(hello PUBLIC ${GLEW_INCLUDE_DIRS})
+target_link_libraries(hello "${GLEW_LIBRARIES}")
+target_include_directories(hello PUBLIC "${GLEW_INCLUDE_DIRS}")
 
 # Windows: copy the dll as a post-build step
 if(WIN32)
